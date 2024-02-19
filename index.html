@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- <div class="digital-clock">
+        <div class="icon"><img src="icon.jpg" alt="" width="30px"></div>
+        <ul class="dot-menu">
+            <li class="menu-item">
+                <span class="clock-format-text">24 hour format</span>
+                <div class="format-switch-btn"></div>
+            </li>
+        </ul> -->
+        <!-- <div class="time">
+            <span class="ahour">00</span>
+            <span class="adots">:</span>
+            <span class="aminute">00</span>
+            <div class="right-side">
+            <span class="period">AM/PM</span>
+            <span class="asecond">00</span>
+        </div>
+        </div> -->
+        <!-- <div class="calender">
+            <span class="m-name">month</span>
+            <span class="d-name">day</span>
+            <span class="d-number">00</span>
+            <span class="year">0000</span>
+        </div>
+    </div>
+     -->
+    <div class="Container">
+        <div class="clock">
+            <div class="circle" id="sc" style="--clr:rgb(232, 26, 53);"><i></i></div>
+            <div class="circle circle2" id="mn" style="--clr:rgb(60, 0, 255);"><i></i></div>
+            <div class="circle circle3" id="hr" style="--clr:rgb(191, 255, 0);"><i></i></div>
+
+            <span style="--i:1;"><b>1</b></span>
+            <span style="--i:2;"><b>2</b></span>
+            <span style="--i:3;"><b>3</b></span> 
+            <span style="--i:4;"><b>4</b></span>
+            <span style="--i:5;"><b>5</b></span>
+            <span style="--i:6;"><b>6</b></span>
+            <span style="--i:7;"><b>7</b></span>
+            <span style="--i:8;"><b>8</b></span>
+            <span style="--i:9;"><b>9</b></span>
+            <span style="--i:10;"><b>10</b></span>
+            <span style="--i:11;"><b>11</b></span>
+            <span style="--i:12;"><b>12</b></span>
+           
+        </div>
+        <!-- digital clock -->
+        <div id="time">
+            <div id="hour" style="--clr:rgb(191, 255, 0);">00</div>
+            <div id="minutes" style="--clr:rgb(43, 0, 255);">00</div>
+            <div id="seconds" style="--clr:rgb(232, 26, 26);">00</div>
+            <div id="ampm">AM</div>
+
+            <div class="calender">
+                <span class="m-name">month</span>
+                <span class="d-name">day</span>
+                <span class="d-number">00</span>
+                <span class="year">0000</span>
+            </div>
+
+        </div>
+    </div>
+    <script>
+
+        let hr=document.querySelector('#hr');
+        let mn=document.querySelector('#mn');
+        let sc=document.querySelector('#sc');
+        // var dname=now.getDay();
+
+        setInterval(() =>{
+        let day=new Date();
+        let hh=day.getHours() * 30;
+        let mm=day.getMinutes() * 6;
+        let ss=day.getSeconds() * 6;
+
+        hr.style.transform =`rotateZ(${hh+(mm/12)}deg)`;
+        mn.style.transform =`rotateZ(${mm}deg)`;
+        sc.style.transform =`rotateZ(${ss}deg)`;
+
+
+        // digital clock
+        let hour=document.getElementById('hour');
+        let minutes=document.getElementById('minutes');
+        let seconds=document.getElementById('seconds');
+        let ampm=document.getElementById('ampm');
+
+        let h=new Date().getHours();
+        let m=new Date().getMinutes();
+        let s=new Date().getSeconds();
+
+        let am=h>=12? "PM":"AM";
+        // convert 24 hour to 12 hour
+        if(h>12){
+            h=h-12;
+        }
+
+        // add zero before single digit
+        h=(h<10)? "0" + h : h
+        m=(m<10)? "0" + m : m
+        s=(s<10)? "0" + s : s
+
+        hour.innerHTML=h;
+        minutes.innerHTML=m;
+        seconds.innerHTML=s;
+        ampm.innerHTML=am;
+
+        var today=new Date();
+        const dayNumber=today.getDate();
+        const year=today.getFullYear();
+        const dayName=today.toLocaleString("deault",{weekday: "long"});
+        const monthName=today.toLocaleString("deault",{month: "short"});
+
+        document.querySelector(".m-name").innerHTML=monthName;
+        document.querySelector(".d-name").innerHTML=dayName;
+        document.querySelector(".d-number").innerHTML=dayNumber;
+        document.querySelector(".year").innerHTML=year;
+
+
+        
+        
+
+
+
+        })
+
+
+        // function clock(){
+        //     var today=new Date();
+        //     var hrs=today.getHours();
+        //     var mnts=today.getMinutes();
+        //     var sec=today.getSeconds();
+        //     let period="AM";
+        //     // set the time am/pm
+        //     if(hrs>=12){
+        //         period="PM";
+        //     }
+
+        //     //set 12 hour clock
+        //     hrs=hrs>12? hrs%12:hrs;
+
+        //     //add single digit before 0
+        //     if(hrs<10){
+        //         hrs="0"+hrs;
+        //     }
+        //     if(mnts<10){
+        //         mnts="0"+mnts;
+        //     }
+        //     if(sec<10){
+        //         sec="0"+sec;
+        //     }
+
+        //     document.querySelector(".ahour").innerHTML=hrs;
+        //     document.querySelector(".aminute").innerHTML=mnts;
+        //     document.querySelector(".asecond").innerHTML=sec;
+        //     document.querySelector(".period").innerHTML=period;
+            
+        // }
+        // var updateClock=setInterval(clock,1000);
+
+        // get date and time
+        // var today=new Date();
+        // const dayNumber=today.getDate();
+        // const year=today.getFullYear();
+        // const dayName=today.toLocaleString("deault",{weekday: "long"});
+        // const monthName=today.toLocaleString("deault",{month: "short"});
+
+        // document.querySelector(".m-name").innerHTML=monthName;
+        // document.querySelector(".d-name").innerHTML=dayName;
+        // document.querySelector(".d-number").innerHTML=dayNumber;
+        // document.querySelector(".year").innerHTML=year;
+
+        
+
+
+    </script>
+    
+</body>
+</html>
+
+
